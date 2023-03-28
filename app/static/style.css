@@ -1,0 +1,112 @@
+*{
+    background-color: rgb(238, 235, 231);
+    font-family: 'Roboto', sans-serif;
+}
+.collapse{
+    justify-content: flex-end;
+}
+.container-register{
+    display: flex;
+    margin: 50px auto;
+    width: 50%;
+}
+.navbar{
+    background-color: rgb(181, 198, 235);
+}
+
+.error-message{
+    width: 350px;
+    margin: 5px auto;
+}
+.contaner-login{
+    display: flex;
+    margin: 50px auto;
+    width: 50%;
+}
+.title_login, .title-options, .title_craft, .title-account{
+    text-align: center;
+}
+.btn-nav{
+    background-color: rgb(88, 88, 228);
+}
+.card-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.container-principal{
+    display: flex;
+    flex-direction: row;
+}
+.container-account{
+    width: 50%;
+    margin: 2%;
+}
+.container-orders{
+    display: flex;
+    align-items: baseline;
+}
+.orders{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+}
+.container-orders label, input{
+    text-align: center;
+    margin: 7px;
+}
+hr{
+    color: gray;
+}
+.container-craft{
+    width: 430px;
+    margin: 20px auto;
+}
+.area-check{
+    width: 400px;
+    height: 350px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+}
+.area-check label,input{
+    padding: 5px;
+    text-align: center;
+}
+.container-order{
+    width: 370px;
+    margin: 2%;
+}
+
+span{
+    font-weight: bold;
+    margin: 10px;
+}
+
+.card-img-top{
+    border-radius: 10px;
+    border-style: solid;
+    border-color: gray;
+}
+
+.card-order{
+    width: 400px;
+    height: 300px;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: gray;
+
+}
+.img-order{
+    display: flex;
+}
+.container-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+

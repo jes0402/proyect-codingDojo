@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+    <title>Login</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <h1 class="navbar-text">Pizza Nigth</h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse">
+                <a class="btn btn-outline-primary" type="submit" href="/home">Home</a>
+                <a class="btn btn-outline-primary" type="submit" href="/craft">Order</a>
+                <a class="btn btn-outline-primary" type="submit" href="/account">Account</a>
+                <a class="btn btn-outline-primary" type="submit" href="/logout">Logout</a>
+            </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+    <h1 class="title-account">Account Info</h1>
+    <div class="container-principal">
+        <div class="container-account">
+            <form action="/account" method="POST" class="row g-3">
+                <div class="col-md-6">
+                    <label for="first_name" class="form-label">First Name</label>
+                    <input type="text" class="form-control" name='first_name'>
+                </div>
+                <div class="col-md-6">
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" name='last_name'>
+                </div>
+                <div class="col-12">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" name='email'>
+                </div>
+                <div class="col-12">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" name='address'>
+                </div>
+                <div class="col-md-7">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="inputCity" name='city'>
+                </div>
+                <div class="col-md-5">
+                    <label for="state" class="form-label">State</label>
+                    <select id="inputState" class="form-select" name='state' >
+                    <option selected>Choose...</option>
+                    <option>AL</option>
+                    <option>CH</option>
+                    <option>RS</option>
+                    <option>AN</option>
+                </select>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </main>
+</body>
+</html>
