@@ -2,7 +2,7 @@ from app import app
 from flask import render_template,redirect,request,session,flash
 from flask_bcrypt import Bcrypt
 from app.models.user import Users
-from app.models.topping import Topping
+from app.models.topping import Toppings
 from app.models.order import Order
 
 

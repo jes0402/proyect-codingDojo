@@ -4,7 +4,7 @@ from flask import flash
 
 
 # modelar la clase después de la tabla friend de nuestra base de datos
-class Topping:
+class Toppings:
     def __init__( self , data ):
         self.id = data['id']
         self.toppings = data['toppings']
@@ -18,6 +18,7 @@ class Topping:
         # data es un diccionario que se pasará al método de guardar desde server.py
         result = connectToMySQL('pizzabd').query_db( query, data )
         return result
+    
         
     @classmethod
     def getId(cls, data ):
