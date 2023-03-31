@@ -6,15 +6,14 @@ from flask import flash
 class Pizza:
     def __init__( self , data ):
         self.id = data['id']
+        self.orders_id = data['orders_id']
         self.precio = data['precio']
         self.method = data['method']
         self.size = data['size']
         self.crust = data['crust']
         self.QTY = data['QTY']
-        self.toppings = data['toppings']
         self.updated_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.toppings = []
     # ahora usamos métodos de clase para consultar nuestra base de datos
     
     def calcular_precio(data):
@@ -43,8 +42,13 @@ class Pizza:
     @classmethod
     def save(cls, data ):
         cls.calcular_precio(data)
-        query = "INSERT INTO pizza ( precio, method , size , crust , QTY, toppings, created_at, updated_at ) VALUES (%(precio)s,%(method)s,%(size)s,%(crust)s,%(QTY)s, %(toppings)s,NOW(),NOW())"
+        query = "INSERT INTO pizza ( orders_id, precio, method , size , crust , QTY, created_at, updated_at ) VALUES (%(orders_id)s,%(precio)s,%(method)s,%(size)s,%(crust)s,%(QTY)s,NOW(),NOW())"
         # data es un diccionario que se pasará al método de guardar desde server.py
         result = connectToMySQL('pizzabd').query_db( query, data )
         return result
+    
+    @classmethod
+    def add_topping(cls,data): # add relationship in burgers_toppings table
+        query = "INSERT INTO pizza_toppings (pizza_id, toppings_id,created_at,updated_at) VALUES (%(pizza_id)s,%(toppings_id)s,NOW(),NOW());"
+        return connectToMySQL('pizzabd').query_db(query,data)
 

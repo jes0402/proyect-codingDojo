@@ -27,10 +27,10 @@ def create_pizza():
         "toppings" : ','.join(request.form.getlist('toppings[]')),
         "users_id": request.form["userSession"]
     }
+    order = Order.save(data)
+    data["orders_id"] = order
     pizza = Pizza.save(data)
     data["pizza_id"] = pizza
-    order = Order.save(data)
-    data["order_id"] = order
     orders = Order.get_order_id(data)
     data["list_toppings"] = data["toppings"].split(",")
     toppings = Topping.getId(data)

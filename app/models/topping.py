@@ -10,7 +10,6 @@ class Topping:
         self.toppings = data['toppings']
         self.updated_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.pizza = []
     # ahora usamos métodos de clase para consultar nuestra base de datos
     
     @classmethod

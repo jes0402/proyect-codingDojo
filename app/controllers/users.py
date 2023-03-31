@@ -34,6 +34,7 @@ def register():
     session['user_id'] = id
     return redirect('/login')
 
+
 @app.route("/login")
 def login_template():
     return render_template('login.html')
@@ -54,6 +55,7 @@ def login():
     session['user_id'] = user.id
     return redirect('/home')
 
+
 @app.route("/home")
 def home_order():
     if 'user_id' not in session:
@@ -65,10 +67,11 @@ def account():
     if 'user_id' not in session:
         return redirect('/')
     data = {
-    "id": session['user_id']
+    "user_id": session['user_id']
     }
     user = Users.get_one(data)
-    return render_template('account_info.html', user = user)
+    orders_user = Order.get_all_orders(data)
+    return render_template('account_info.html', user = user, all_list_orders = orders_user)
 
 @app.route("/account", methods=["POST"])
 def account_info():
