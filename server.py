@@ -1,5 +1,5 @@
 from app import app
-from app.controllers import users,orders
+from app.controllers import users,orders, admins
 
 
 

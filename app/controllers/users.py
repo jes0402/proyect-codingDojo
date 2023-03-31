@@ -58,7 +58,7 @@ def login():
 def home_order():
     if 'user_id' not in session:
             return redirect("/login")
-    return render_template('home.html')
+    return render_template('home.html', title = "Home")
 
 @app.route("/account")
 def account():

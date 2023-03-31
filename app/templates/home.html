@@ -1,44 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
-    <title>Login</title>
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <h1 class="navbar-text">Pizza Nigth</h1>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse">
-                <a class="btn btn-outline-primary" type="submit" href="/home">Home</a>
-                <a class="btn btn-outline-primary" type="submit" href="/craft">Order</a>
-                <a class="btn btn-outline-primary" type="submit" href="/account">Account</a>
-                <a class="btn btn-outline-primary" type="submit" href="/logout">Logout</a>
-            </div>
-            </div>
-        </nav>
-    </header>
+{% extends "components/Layout.html" %}
+
+{% block content %}
+{% include 'components/Navbar.html' %}
     <main>
-    <h1 class="title-options">Quick Options</h1>
-    <div class="card-container">
-        <!-- Card one -->
-        <div class="card" style="width: 26rem;">
-            <img src="static/img/pizza1.jpg" class="card-img-top" alt="pizza1">
-            <div class="card-body">
-                <p class="card-text">Here you can create your pizza</p>
-                <a href="/craft" class="btn btn-primary">New Order</a>
+    <div class="home_container">
+        <h1 class="title-options">Quick Options</h1>
+        <div class="card-container">
+            <!-- Card one -->
+            <div class="card" style="width: 26rem;">
+                <img src="static/img/pizza1.jpg" class="card-img-top" alt="pizza1">
+                <div class="card-body">
+                    <p class="card-text">Here you can create your pizza</p>
+                    <a href="/craft" class="btn btn-primary">New Order</a>
+                </div>
             </div>
         </div>
     </div>
     </main>
 </div>
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'components/Layout.html' %}
+{% block content %}
+{% include 'components/AdminNavbar.html'%}
+
+<main class="container_toppings">
+    <form action="/create_topping" method="post" class="form-toppings">
+        <h1 for="toppings">Toppings</h1>
+        <div class="form-toppings-input">
+            <input type="text" class="form-control" id="toppings" name="toppings" placeholder="Enter Toppings">
+        </div>
+        <button type="submit" class="btn btn-primary-topping">Submit</button>
+    </form>
+</main>
+
+{% endblock %}
