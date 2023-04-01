@@ -1,10 +1,10 @@
 from app import app
 from flask import render_template,redirect,request,session,flash
 from app.models.order import Order
-from app.models.pizza import Pizzas
-from app.models.topping import Toppings
+from app.models.pizza import Pizza
+from app.models.topping import Topping
 from app.models.user import Users
-from app.models.pizza_topping import Pizza_topping
+from app.models.pizzaTopping import PizzaToppings
 
 
 @app.route("/craft")
@@ -15,29 +15,39 @@ def craft():
     "id": session['user_id']
     }
     user = Users.get_one(data)
-    toppings = Toppings.get_all()
+    toppings = Topping.get_all()
     return render_template('craft.html', all_topping = toppings,user = user)
 
 @app.route("/order",methods=['POST'])
 def create_pizza():
+    print(request.form)
     data = {
+        "users_id": request.form["userSession"]
+    }
+    dataToppings = {
+        "toppings" : request.form["toppings"]
+    }
+    Order.save(data["users_id"])
+    order_id = Order.get_order_id_2(data["users_id"])
+    print(order_id)
+    data_pizza = {
         "method": request.form["method"],
         "size": request.form["size"],
         "crust": request.form["crust"],
         "QTY": request.form["QTY"],
-        "toppings" : ','.join(request.form.getlist('toppings[]')),
-        "user_id": request.form["userSession"]
+        "order_id": order_id,
+        'toppings': request.form["toppings"]
     }
-    order = Order.save(data)
-    data["order_id"] = order
-    pizza = Pizzas.save(data)
-    data["pizza_id"] = pizza
-    print("hola", pizza)
-    pizza_toppings = Pizzas.add_topping(data)
-    data["topping_id"] = pizza_toppings
-    orders = Order.get_order_id(data)
-    data["list_toppings"] = data["toppings"].split(",")
-    toppings = Toppings.getId(data)
+    Pizza.save(data_pizza)
+    pizza_id = Pizza.get_pizza_id(data_pizza['order_id'])
+    toppings_id = Topping.getId(dataToppings)
+    data_pizza_toppings = {
+        "pizza_id": pizza_id,
+        "toppings_id": toppings_id
+    }
+    PizzaToppings.save(data_pizza_toppings)
+    orders = Order.get_all()
+    toppings = [1,2,3]
     return render_template('order.html', all_orders = orders, toppings = toppings)
 
 

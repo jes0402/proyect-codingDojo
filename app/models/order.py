@@ -25,13 +25,13 @@ class Order:
     
     @classmethod
     def get_all_orders(cls, data):
-        query = "select orders.created_at,QTY,size,toppings from users JOIN orders on orders.user_id = users.id JOIN pizzas on pizzas.id = orders.pizza_id WHERE user.id = %(user_id)s"
+        query = "select orders.created_at,QTY,size,toppings from users JOIN orders on orders.user_id = users.id JOIN pizza on pizza.id = orders.pizza_id WHERE user.id = %(user_id)s"
         results = connectToMySQL('pizzabd').query_db(query, data)
         print("hola", results)
         
     @classmethod
     def get_order_id(cls, data):
-        query = "select orders.id, precio, method, QTY, size, crust, pizza_toppings.toppings_id from users JOIN orders on orders.user_id = users.id JOIN pizzas on pizzas.orders_id = orders.id JOIN pizza_toppings on pizza_toppings.pizza_id = pizzas.id WHERE orders.id = %(order_id)s"
+        query = "select orders.id, precio, method, QTY, size, crust, pizza_toppings.toppings_id from users JOIN orders on orders.user_id = users.id JOIN pizza on pizza.orders_id = orders.id JOIN pizza_toppings on pizza_toppings.pizza_id = pizza.id WHERE orders.id = %(order_id)s"
         results = connectToMySQL('pizzabd').query_db(query,data)
         return results
     
