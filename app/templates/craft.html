@@ -45,23 +45,26 @@
                     </div>
                 </div>
                 <div class="col-md-12 craft">
-                    <div class="form-group">
+                    <div class="form-group-toppings">
                             <label>Toppings:</label>
                             <div class="form-check">
-                            {% for one_topping in all_topping %}
-                                <input class="form-check-input" type="checkbox" name="toppings" id="{{ one_topping.id}}" value="{{ one_topping.id }}">
-                                <label class="form-check-label" for="{{ one_topping.id }}">
-                                {{ one_topping.toppings }} 
-                                </label>
+                                {% for one_topping in all_topping %}
+                                <div>
+                                    <input class="form-check-input" type="checkbox" name="toppings" id="{{ one_topping.id}}" value="{{ one_topping.id }}">
+                                    <label class="form-check-label" for="{{ one_topping.id }}">
+                                    {{ one_topping.toppings }} 
+                                    </label>
+                                <div>
+                                {% endfor %}
                             </div>
-                            {% endfor %}
                     </div>
                 </div>
                 <br>
                 <div class="col-md-12 craft">
                     <button type="submit" class="btn btn-primary craft">Create Order</button>
+                </div>
                 </form>
-            </div>  
+            {% endwith %} 
         </div>
     </main>
 {% endblock %}

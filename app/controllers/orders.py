@@ -32,13 +32,14 @@ def create_pizza():
     }
     order_id = Order.save(dataOrderSave)
     dataOrderID = {"order_id": order_id}
+    toppings_list = request.form["toppings"].split(',')
     data_pizza = {
         "method": request.form["method"],
         "size": request.form["size"],
         "crust": request.form["crust"],
         "QTY": request.form["QTY"],
         "order_id": dataOrderID['order_id'],
-        'toppings': request.form["toppings"]
+        'toppings': toppings_list
     }
     pizza = Pizza.save(data_pizza)
     pizza_id = Pizza.get_pizza_id(data_pizza)
@@ -49,7 +50,8 @@ def create_pizza():
     pizza_toppings = PizzaToppings.save(data_pizza_toppings )
     toppings = Topping.get_toppings(data_pizza_toppings)
     print(toppings)
-    orders = Order.get_all_orders()
+    orders = Order.get_order_info(dataOrderID)
+    print("hola", orders)
     return render_template('order.html', all_orders = orders, toppings = toppings )
 
 

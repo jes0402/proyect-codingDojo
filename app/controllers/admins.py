@@ -21,7 +21,15 @@ def check_admin():
 
 @app.route("/orders")
 def orders_admin():
-    orders = Order.get_all()
+    orders = Order.get_all_orders()
+    for order in orders:
+        if order["completo"] == 1:
+            order["estado"] = "completo"
+        if order["pendiente"] == 1:
+            order["estado"] = "pendiente"
+        if order["cancelado"] == 1:
+            order["estado"] = "cancelado"
+    print("hola",orders )       
     return render_template('orders_admin.html', all_orders = orders )
 
 @app.route("/toppings")

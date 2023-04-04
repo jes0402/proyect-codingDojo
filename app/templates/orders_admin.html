@@ -7,6 +7,8 @@
         <tr>
             <th>Order Id</th>
             <th>Date</th>
+            <th>Costo</th>
+            <th>Valor</th>
             <th>Estado</th>
             <th>Action</th>
         </tr>
@@ -15,6 +17,8 @@
             <td>{{list_order.get("id")}}</td>
             <td>{{list_order.get("created_at")}}</td>
             <td></td>
+            <td>{{list_order.get("precio")}}</td>
+            <td>{{list_order.get("estado")}}</td>
             <td><a href="/edit/">Edit</a></td>
         </tr>
         {% endfor %}

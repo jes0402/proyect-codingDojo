@@ -42,6 +42,7 @@ def login():
         "email": request.form['email']
     }
     user = Users.get_by_email(data)
+    print("hola", user)
     if not user:
         flash("Invalid Email/Password","login")
         return redirect("/login")
@@ -49,7 +50,15 @@ def login():
         flash("Invalid Email/Password","login")
         return redirect("/login")
     session['user_id'] = user.id
-    return redirect('/home')
+    data = {
+    "id": session['user_id']
+    }
+    user_session = Users.get_one(data)
+    print("hola", user_session)
+    if user_session[0]["admin"] == 1:
+        return redirect('/dashboard')
+    else:
+        return redirect('/home')
 
 @app.route("/home")
 def home_order():
