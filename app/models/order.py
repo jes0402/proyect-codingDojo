@@ -24,11 +24,21 @@ class Order:
 
     
     @classmethod
-    def get_all(cls):
-        query = "select * from orders"
+    def get_all_orders(cls):
+        query = "SELECT * FROM orders"
         results = connectToMySQL('pizzabd').query_db(query)
+        orders = []
+        for order in results:
+            orders.append(order)
+        return orders
+
+    @classmethod
+    def get_order_info(cls, data):
+        query = "SELECT orders.id, precio, method, QTY, size, crust FROM users JOIN orders ON orders.users_id = users.id JOIN pizza ON pizza.orders_id = orders.id WHERE orders.id = %(order_id)s"
+        results = connectToMySQL('pizzabd').query_db(query, data)
         return results
-        
+    
+
     @classmethod
     def get_order_id(cls, data):
         query = "select orders.id, precio, method, QTY, size, crust, toppings from users JOIN orders on orders.users_id = users.id  JOIN pizza on pizza.id = orders.pizza_id WHERE orders.id = %(order_id)s"
@@ -46,3 +56,5 @@ class Order:
         query = "DELETE from orders WHERE id = %(id)s"
         results = connectToMySQL('pizzabd').query_db(query, data)
         return results
+
+    

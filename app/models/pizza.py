@@ -21,31 +21,30 @@ class Pizza:
         size = data['size']
         QTY = data['QTY']
         toppings = data['toppings']
-        
-        #calcular el precio segun el tamaño
+
+        # calcular el precio segun el tamaño
         if size == "Medium":
             precio += 16.99
         if size == "Large":
             precio += 20.99
         if size == "Small":
             precio += 11.99
-            
-        #calcular el precio segun la cantidad de pizzas   
-        
+
+        # calcular el precio segun la cantidad de pizzas
         precio = precio * float(QTY)
-        
-        #calcular el precio segun los toppings 
+
+        # calcular el precio segun los toppings
         precio += len(toppings)
-        
+
         data["precio"] = precio
-        
+        return data
+
     @classmethod
-    def save(cls, data ):
-        cls.calcular_precio(data)
-        query = "INSERT INTO pizza ( orders_id, precio, method , size , crust , QTY, toppings, created_at, updated_at ) VALUES (%(order_id)s, %(precio)s,%(method)s,%(size)s,%(crust)s,%(QTY)s, %(toppings)s,NOW(),NOW())"
-        # data es un diccionario que se pasará al método de guardar desde server.py
-        result = connectToMySQL('pizzabd').query_db( query, data )
-        return result
+    def save(cls, data):
+        data = cls.calcular_precio(data)
+        query = "INSERT INTO pizza (orders_id, precio, method, size, crust, QTY, created_at, updated_at) VALUES (%(order_id)s, %(precio)s, %(method)s, %(size)s, %(crust)s, %(QTY)s, NOW(), NOW())"
+        connectToMySQL('pizzabd').query_db(query, data)
+        return data
     
     @classmethod
     def get_pizza_id(cls, data):
@@ -53,3 +52,20 @@ class Pizza:
         results = connectToMySQL('pizzabd').query_db(query,data)
         return results
 
+    @staticmethod
+    def validate_pizza(data):
+        is_valid = True
+        if len(data['method']) < 1:
+            flash("Method is required")
+            is_valid = False
+        if len(data['size']) < 1:
+            flash("Size is required")
+            is_valid = False
+        if len(data['crust']) < 1:
+            flash("Crust is required")
+            is_valid = False
+        if len(data['QTY']) < 1:
+            flash("QTY is required")
+            is_valid = False
+        
+        return is_valid
