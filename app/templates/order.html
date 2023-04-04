@@ -9,6 +9,7 @@
             <div class="container-order">
                 <h2 class="navbar-text">Your Order</h2>
                 {% for one_order in all_orders %}
+                    {{ one_order }}
                 <div class="info-order">
                     <p>Method: {{one_order.get("method")}}</p>
                     <p>QTY: {{one_order.get("QTY")}}</p>

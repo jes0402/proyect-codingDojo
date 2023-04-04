@@ -23,7 +23,6 @@ class PizzaToppings:
         query = "select id from pizza_toppings where pizza_id = %(pizza_id)s and toppings_id = %(toppings_id)s"
         # data es un diccionario que se pasará al método de guardar desde server.py
         results = connectToMySQL('pizzabd').query_db( query, data )
-        
         return results
     
     @classmethod

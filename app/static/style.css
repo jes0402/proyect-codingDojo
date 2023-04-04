@@ -9,6 +9,10 @@ body {
 
 }
 
+.hidden {
+    display: none;
+}
+
 .collapse{
     justify-content: flex-end;
 }
@@ -76,6 +80,15 @@ body {
 .container-account{
     width: 50%;
     margin: 2%;
+}
+
+.navbar-brand {
+    color: #fff;
+}
+
+.navbar-brand:hover {
+    color: #333;
+    text-decoration: underline;
 }
 
 

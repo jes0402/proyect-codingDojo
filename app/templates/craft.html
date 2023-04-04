@@ -4,20 +4,21 @@
     <main class="container-craft">
         <div class="container-craft-form">
             <h1 class="title_craft">CRAFT-A-PIZZA</h1>
+            {% with messages = get_flashed_messages(category_filter=['login'])%}
             <form action="/order" method="POST" class="row form_craft g-5" >
                 <input type="hidden" value={{session.user_id}} name="userSession">
                 <div class="col-md-12 craft">
                     <div class="form_group_craft">
                         <label for="method" class="form-label">Method:</label>
-                        <select name="method" class="form-select">
+                        <select name="method" required class="form-select">
                             <option selected disabled>Choose...</option>
                             <option>CarryOut</option>
                         </select>
                     </div>
                     <div class="form_group_craft">
                         <label for="size" class="form-label">Size:</label>
-                        <select name="size" class="form-select">
-                            <option selected>Choose...</option>
+                        <select name="size" required class="form-select">
+                            <option selected disabled>Choose...</option>
                             <option>Large</option>
                             <option>Medium</option>
                             <option>Small</option>
@@ -27,7 +28,7 @@
                 <div class="col-md-12 craft">
                     <div class="form_group_craft">
                         <label for="crust" class="form-label">Crust:</label>
-                        <select name="crust"  class="form-select">
+                        <select name="crust" required class="form-select">
                             <option selected disabled>Choose...</option>
                             <option>Thin Crust</option>
                             <option>Thick Crust</option>
@@ -35,7 +36,7 @@
                     </div>
                     <div class="form_group_craft">
                     <label for="QTY" class="form-label">QTY:</label>
-                    <select name="QTY" class="form-select">
+                    <select name="QTY" required class="form-select">
                         <option selected disabled>Choose...</option>
                         <option>1</option>
                         <option>2</option>
@@ -45,15 +46,15 @@
                 </div>
                 <div class="col-md-12 craft">
                     <div class="form-group">
-                        <label>Toppings:</label>
-                        {% for one_topping in all_topping %}
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="toppings" id="{{ one_topping.id}}" value="{{ one_topping.id }}">
-                            <label class="form-check-label" for="{{ one_topping.id }}">
-                            {{ one_topping.toppings }} 
-                            </label>
-                        </div>
-                        {% endfor %}
+                            <label>Toppings:</label>
+                            <div class="form-check">
+                            {% for one_topping in all_topping %}
+                                <input class="form-check-input" type="checkbox" name="toppings" id="{{ one_topping.id}}" value="{{ one_topping.id }}">
+                                <label class="form-check-label" for="{{ one_topping.id }}">
+                                {{ one_topping.toppings }} 
+                                </label>
+                            </div>
+                            {% endfor %}
                     </div>
                 </div>
                 <br>
