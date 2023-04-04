@@ -24,10 +24,10 @@ body {
 /************ Navbar ***********/
 
 .navbar{
-  background-color: rgb(181, 198, 235);
-  background-color: transparent;
-  border-bottom: 1px solid black ;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: rgb(181, 198, 235);
+    background-color: transparent;
+    border-bottom: 1px solid black ;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .btn.btn-outline-primary {
@@ -271,4 +271,21 @@ span{
 
 .btn-primary-topping:hover {
     background-color: #eaafc8;
+}
+
+/************ Orders-Admin ************/
+.container_orders table,tr,th, td{
+    border: 1px solid;
+    border-color: black;
+    margin: 25px auto;
+    height: 40px;
+    width: 400px;
+    font-size: 20px;
+}
+.container_orders{
+    margin: auto;
+}
+
+.container_orders a{
+    color: black
 }

@@ -24,8 +24,8 @@ class Order:
 
     
     @classmethod
-    def get_all_orders(cls):
-        query = "select method, QTY, size, crust, toppings from users JOIN orders on orders.users_id = %(id)s  JOIN pizza on pizza.id = orders.pizza_id JOIN pizza_toppings on pizza_toppings.pizza_id = pizza.id JOIN toppings on toppings.id = pizza_toppings.toppings_id"
+    def get_all(cls):
+        query = "select * from orders"
         results = connectToMySQL('pizzabd').query_db(query)
         return results
         

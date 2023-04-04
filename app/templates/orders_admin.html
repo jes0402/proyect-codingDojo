@@ -1,0 +1,24 @@
+{% extends 'components/Layout.html' %}
+{% block content %}
+{% include 'components/AdminNavbar.html'%}
+
+<main class="container_orders">
+    <table>
+        <tr>
+            <th>Order Id</th>
+            <th>Date</th>
+            <th>Estado</th>
+            <th>Action</th>
+        </tr>
+        {% for list_order in all_orders %}
+        <tr>
+            <td>{{list_order.get("id")}}</td>
+            <td>{{list_order.get("created_at")}}</td>
+            <td></td>
+            <td><a href="/edit/">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</main>
+
+{% endblock %}

@@ -5,8 +5,6 @@ from app.models.user import Users
 from app.models.topping import Topping
 from app.models.order import Order
 
-
-
 bcrypt = Bcrypt(app)
 
 @app.route("/")
@@ -25,7 +23,7 @@ def register():
         "address": request.form["address"],
         "city": request.form["city"],
         "state": request.form["state"],
-        "password": bcrypt.generate_password_hash(request.form["password"]),
+        "password": bcrypt.generate_password_hash(request.form["password"])
     }
     id = Users.save(new_user)
     if not id:
@@ -50,7 +48,6 @@ def login():
     if not bcrypt.check_password_hash(user.password,request.form['password']):
         flash("Invalid Email/Password","login")
         return redirect("/login")
-
     session['user_id'] = user.id
     return redirect('/home')
 

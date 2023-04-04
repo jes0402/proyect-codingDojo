@@ -1,10 +1,28 @@
 from app import app
 from flask import render_template, redirect, request, session, flash
 from app.models.topping import Topping
+from app.models.user import Users
+from app.models.order import Order
+
 
 @app.route("/dashboard")
-def dashboard():
-    return render_template('dashboard.html')
+def check_admin():
+    user_id = session['user_id']
+    if 'user_id' not in session:
+            return redirect("/login")
+    data = {
+    "id": session['user_id']
+    }
+    user = Users.get_one(data)
+    if user[0]["admin"] != 1:
+        return render_template('home.html')
+    else:
+        return render_template('dashboard.html')
+
+@app.route("/orders")
+def orders_admin():
+    orders = Order.get_all()
+    return render_template('orders_admin.html', all_orders = orders )
 
 @app.route("/toppings")
 def toppings():
