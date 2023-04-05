@@ -1,4 +1,5 @@
 from app.config.mysqlconnection import connectToMySQL
+from app.models import topping
 from flask import flash
 
 
@@ -6,16 +7,22 @@ from flask import flash
 class PizzaToppings:
     def __init__( self , data ):
         self.id = data['id']
-        self.updated_at = data['created_at']
+        self.pizza_id = data['pizza_id']
+        self.toppings_id = data['toppings_id']
+        self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.pizza = []
     # ahora usamos métodos de clase para consultar nuestra base de datos
     
     @classmethod
     def save(cls, data ):
-        query = "INSERT INTO pizza_toppings ( created_at, updated_at, pizza_id, toppings_id ) VALUES (NOW(),NOW(), %(pizza_id)s, %(toppings_id)s )"
+        query = "INSERT INTO pizza_toppings ( pizza_id, toppings_id, created_at, updated_at) VALUES"
         # data es un diccionario que se pasará al método de guardar desde server.py
-        result = connectToMySQL('pizzabd').query_db( query, data )
+        values = []
+        for toppings_id in data['toppings_id']:
+            values.append("(%(pizza_id)s, %(topping_id)s, NOW(), NOW())")
+        query += ", ".join(values)
+        result = connectToMySQL('pizzabd').query_db(query, data)
         return result
         
     @classmethod

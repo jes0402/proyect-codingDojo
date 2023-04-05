@@ -8,6 +8,7 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 class Users:
     def __init__( self , data ):
         self.id = data['id']
+        self.admin= data['admin']
         self.first_name = data['first_name']
         self.last_name = data['last_name']
         self.email = data['email']
@@ -30,7 +31,7 @@ class Users:
     
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO users ( first_name , last_name , email , address, city, state, password,created_at, updated_at ) VALUES (%(first_name)s,%(last_name)s,%(email)s,%(address)s,%(city)s,%(state)s,%(password)s, NOW(),NOW())"
+        query = "INSERT INTO users ( admin, first_name , last_name , email , address, city, state, password,created_at, updated_at ) VALUES (false, %(first_name)s,%(last_name)s,%(email)s,%(address)s,%(city)s,%(state)s,%(password)s, NOW(),NOW())"
         # data es un diccionario que se pasará al método de guardar desde server.py
         return connectToMySQL('pizzabd').query_db( query, data )
     
@@ -38,8 +39,15 @@ class Users:
     def get_one(cls,data):
         query = "SELECT * FROM users WHERE id = %(id)s;"
         return connectToMySQL('pizzabd').query_db(query,data)
-
-
+    
+    @classmethod
+    def get_admin(cls,data):
+        query = "SELECT id FROM users WHERE admin = true;"
+        result = connectToMySQL('pizzabd').query_db(query)
+        if result:
+            return cls(result[0])
+        else:
+            return None
     
     @classmethod
     def get_by_email(cls,data):

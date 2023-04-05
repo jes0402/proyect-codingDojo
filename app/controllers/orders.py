@@ -27,10 +27,10 @@ def create_pizza():
     if request.form.get('toppings') == None:
         flash("Please select at least one topping","craft")
         return redirect('/craft')
-    print(request.form['toppings'])
     dataOrderSave = {
         "users_id": request.form["userSession"]
     }
+    toppings_list = request.form.getlist('toppings')
     order_id = Order.save(dataOrderSave)
     dataOrderID = {"order_id": order_id}
     data_pizza = {
@@ -39,18 +39,24 @@ def create_pizza():
         "crust": request.form["crust"],
         "QTY": request.form["QTY"],
         "order_id": dataOrderID['order_id'],
-        'toppings': request.form["toppings"]
+        'toppings': toppings_list
     }
     pizza = Pizza.save(data_pizza)
-    pizza_id = Pizza.get_pizza_id(data_pizza)
-    data_pizza_toppings = {
-        "pizza_id": pizza_id[0]['id'],
-        "toppings_id": request.form["toppings"]
-    }
-    pizza_toppings = PizzaToppings.save(data_pizza_toppings )
-    toppings = Topping.get_toppings(data_pizza_toppings)
+    for topping in toppings_list:
+        data_pizza_toppings = {
+            "pizza_id": pizza,
+            "toppings_id": topping
+        }
+        pizza_toppings = PizzaToppings.save(data_pizza_toppings )
+    # data_pizza_toppings = {
+    #     "pizza_id": pizza_id[0]['id'],
+    #     "toppings_id": request.form["toppings"]
+    # }
+    # pizza_toppings = PizzaToppings.save(data_pizza_toppings )
+    toppings = Topping.get_toppings_by_id(toppings_list)
     print(toppings)
-    orders = Order.get_all_orders()
+    orders = Order.get_order_info(dataOrderID)
+    print("hola", orders)
     return render_template('order.html', all_orders = orders, toppings = toppings )
 
 

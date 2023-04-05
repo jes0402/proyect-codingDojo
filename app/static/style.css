@@ -6,7 +6,6 @@ body {
     background: #654ea3;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #eaafc8, #654ea3);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #eaafc8, #654ea3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
 }
 
 .hidden {
@@ -16,7 +15,7 @@ body {
 .collapse{
     justify-content: flex-end;
 }
-.container-register{
+.container-register, .contaner-login, .container-account{
     display: flex;
     margin: 50px auto;
     width: 50%;
@@ -25,13 +24,32 @@ body {
     padding: 20px;
 }
 
+.row-register{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.row-login{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.col-md-5{
+    display: flex;
+    align-items: center;
+    flex-direction:column;
+    justify-content: center;
+}
+
 /************ Navbar ***********/
 
 .navbar{
-  background-color: rgb(181, 198, 235);
-  background-color: transparent;
-  border-bottom: 1px solid black ;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: rgb(181, 198, 235);
+    background-color: transparent;
+    border-bottom: 1px solid black ;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .btn.btn-outline-primary {
@@ -94,12 +112,11 @@ body {
 
 /************ Order *************/
 
-.container-orders{
+.container-order{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
-
 
 }
 .orders{
@@ -113,16 +130,18 @@ body {
     text-align: center;
     margin: 7px;
 }
-hr{
-    color: gray;
+
+
+.container-form form {
+    margin: 30px;
+    width: 300px;
 }
+
 
 /************* Craft ************/
 
 .container-craft{
     width: 100%;
-    height: 100vh;
-    margin: 20px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,21 +149,24 @@ hr{
 }
 
 .container-craft-form {
+    margin: 20px;
+    height: 500px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    padding: 30px;
+    padding: 15px;
 }
 
-.row.form_craft {
+.row {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    align-content: flex-start;
     width: 400px;
+    height: 100%;
+    padding: 0 10px;
 }
 
 .col-md-12.craft {
@@ -157,6 +179,12 @@ hr{
 
 .form_group_craft {
     margin: 5px 15px;
+}
+
+.form-group-toppings{
+    display: flex;
+    flex-direction: column;
+    height: 200px;
 }
 
 .form-label {
@@ -202,10 +230,7 @@ select {
     padding: 5px;
     text-align: center;
 }
-.container-order{
-    width: 370px;
-    margin: 2%;
-}
+
 
 span{
     font-weight: bold;
@@ -243,8 +268,15 @@ span{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
     width: 100%;
+}
+
+/***************** Account *****************/
+.row-account{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 /************ Toppings ************/
@@ -284,4 +316,25 @@ span{
 
 .btn-primary-topping:hover {
     background-color: #eaafc8;
+}
+/************ Orders-Admin ************/
+.container_orders table,tr,th, td{
+    border: 1px solid;
+    border-color: black;
+    margin: 25px auto;
+    height: 40px;
+    width: 470px;
+    font-size: 20px;
+}
+.container_orders{
+    display: flex;
+    margin: 50px auto;
+    width: 40%;
+    background-color: rgb(238, 235, 231);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.container_orders a{
+    color: black
 }
