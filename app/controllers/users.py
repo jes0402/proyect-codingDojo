@@ -16,7 +16,9 @@ def register():
     is_valid = Users.validate_user(request.form)
     if not is_valid:
         return redirect("/")
+    admin = request.form["admin"]
     new_user = {
+        "admin": True if admin == "True" else False,
         "first_name": request.form["first_name"],
         "last_name": request.form["last_name"],
         "email": request.form["email"],

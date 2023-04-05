@@ -150,7 +150,7 @@ body {
 
 .container-craft-form {
     margin: 20px;
-    height: 500px;
+    height: 700px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -163,7 +163,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    align-content: flex-start;
+    align-content: stretch;
     width: 400px;
     height: 100%;
     padding: 0 10px;

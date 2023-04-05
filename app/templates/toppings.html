@@ -3,6 +3,15 @@
 {% include 'components/AdminNavbar.html'%}
 
 <main class="container_toppings">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flashes">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
     <form action="/create_topping" method="post" class="form-toppings">
         <h1 for="toppings">Toppings</h1>
         <div class="form-toppings-input">

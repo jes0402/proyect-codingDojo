@@ -75,17 +75,17 @@ class Pizza:
     @staticmethod
     def validate_pizza(data):
         is_valid = True
-        if len(data['method']) < 1:
-            flash("Method is required")
+        if not data.get('method'):
             is_valid = False
-        if len(data['size']) < 1:
-            flash("Size is required")
+            flash("Method is required" ,"craft")
+        if not data.get('size'):
             is_valid = False
-        if len(data['crust']) < 1:
-            flash("Crust is required")
+            flash("Size is required","craft")
+        if not data.get('crust'):
             is_valid = False
-        if len(data['QTY']) < 1:
-            flash("QTY is required")
+            flash("Crust is required","craft")
+        if not data.get('QTY'):
             is_valid = False
-        
+            flash("QTY is required","craft")
+
         return is_valid

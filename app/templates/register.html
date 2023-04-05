@@ -69,9 +69,17 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" name='password' required>
             </div>
-            <div class="col-12">
+            <div class="col-7">
                 <label for="confirm" class="form-label">Confirm</label>
                 <input type="password" class="form-control" name='confirm' required>
+            </div>
+            <div class="col-md-5">
+                <label for="admin" class="form-label">Admin</label>
+                <select id="inputState" class="form-select" name='admin' required>
+                <option selected>Choose...</option>
+                <option>True</option>
+                <option>False</option>
+            </select>
             </div>
             <div class="col-14">
             <input type=submit value=SignUp class="btn btn-primary">
