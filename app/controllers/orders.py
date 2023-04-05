@@ -22,6 +22,7 @@ def craft():
 def create_pizza():
     is_valid = Pizza.validate_pizza(request.form)
     if not is_valid:
+    ## Poner alerta de que no se puede dejar vacio
         return redirect("/")
     if request.form.get('toppings') == None:
         flash("Please select at least one topping","craft")
@@ -57,7 +58,9 @@ def create_pizza():
 def account_order():
     if 'user_id' not in session:
         return redirect('/')
-    return render_template('order.html')
+    orders = Order.get_all_orders()
+    
+    return render_template('order.html', all_orders = orders, toppings = [1,2,3])
 
 @app.route("/delete/<int:id>")
 def delete_order(id):

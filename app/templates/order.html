@@ -1,3 +1,4 @@
+
 {% extends 'components/Layout.html' %}
 {% block content %}    
 {% include 'components/Navbar.html' %}
@@ -6,30 +7,25 @@
         <div class="container-form">
             <form action="/order" methods='POST'>
             <input type="hidden" value={{session.user_id}} name="userSession">
-            <div class="container-order">
+            <div class="info-order">
                 <h2 class="navbar-text">Your Order</h2>
                 {% for one_order in all_orders %}
-                    {{ one_order }}
-                <div class="info-order">
                     <p>Method: {{one_order.get("method")}}</p>
                     <p>QTY: {{one_order.get("QTY")}}</p>
                     <p>Size: {{one_order.get("size")}}</p>
                     <p>Crust: {{one_order.get("crust")}}</p>
-                        <p>Toppings: {{toppings|join(', ')}}</p>
-                </div>
+                    <p>Toppings: {{toppings[0].toppings}}</p>
                 <h4>Price: {{one_order.get("precio")}}</h4>
-                <hr>
+            </div>
                 <h4>Total: {{one_order.get("precio")}}</h4>
-                
                 <a class="btn btn-primary" type="submit" href="/delete/{{one_order.get("id")}}">Delete</a>
                 <div class="btn btn-primary" onclick="showMessage()">Purchase</div>
                 {% endfor %}
-            </div>
             <form>
         </div>
             <div class="img-order">
                 <img src="static/img/pizza3.jpg" class="card-order" alt="pizza1">
             </div>
-    </div>
+        </div>
     </main>
 {% endblock %}
