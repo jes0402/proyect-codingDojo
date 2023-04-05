@@ -22,17 +22,17 @@ def craft():
 def create_pizza():
     is_valid = Pizza.validate_pizza(request.form)
     if not is_valid:
+    ## Poner alerta de que no se puede dejar vacio
         return redirect("/")
     if request.form.get('toppings') == None:
         flash("Please select at least one topping","craft")
         return redirect('/craft')
-    print(request.form['toppings'])
     dataOrderSave = {
         "users_id": request.form["userSession"]
     }
+    toppings_list = request.form.getlist('toppings')
     order_id = Order.save(dataOrderSave)
     dataOrderID = {"order_id": order_id}
-    toppings_list = request.form["toppings"].split(',')
     data_pizza = {
         "method": request.form["method"],
         "size": request.form["size"],
@@ -42,13 +42,18 @@ def create_pizza():
         'toppings': toppings_list
     }
     pizza = Pizza.save(data_pizza)
-    pizza_id = Pizza.get_pizza_id(data_pizza)
-    data_pizza_toppings = {
-        "pizza_id": pizza_id[0]['id'],
-        "toppings_id": request.form["toppings"]
-    }
-    pizza_toppings = PizzaToppings.save(data_pizza_toppings )
-    toppings = Topping.get_toppings(data_pizza_toppings)
+    for topping in toppings_list:
+        data_pizza_toppings = {
+            "pizza_id": pizza,
+            "toppings_id": topping
+        }
+        pizza_toppings = PizzaToppings.save(data_pizza_toppings )
+    # data_pizza_toppings = {
+    #     "pizza_id": pizza_id[0]['id'],
+    #     "toppings_id": request.form["toppings"]
+    # }
+    # pizza_toppings = PizzaToppings.save(data_pizza_toppings )
+    toppings = Topping.get_toppings_by_id(toppings_list)
     print(toppings)
     orders = Order.get_order_info(dataOrderID)
     print("hola", orders)
@@ -59,7 +64,9 @@ def create_pizza():
 def account_order():
     if 'user_id' not in session:
         return redirect('/')
-    return render_template('order.html')
+    orders = Order.get_all_orders()
+    
+    return render_template('order.html', all_orders = orders, toppings = [1,2,3])
 
 @app.route("/delete/<int:id>")
 def delete_order(id):

@@ -21,12 +21,16 @@ class Topping:
         return result
         
     @classmethod
-    def getId(cls, data ):
-        query = "select toppings from toppings where id in ({})".format(data["toppings"])
+    def get_toppings_by_id(cls, toppings ):
+        toppings_id = ",".join(toppings)
+        query = "select * from toppings where id in ({})".format(toppings_id)
         # data es un diccionario que se pasará al método de guardar desde server.py
-        results = connectToMySQL('pizzabd').query_db( query, data )
-        toppings_list = [item['toppings'] for item in results]
-        print(toppings_list)
+        results = connectToMySQL('pizzabd').query_db( query, {} )
+        print(results)
+        toppings = []
+        for topping in results:
+            toppings.append(topping)
+        return toppings
     
     @classmethod
     def get_all(data):

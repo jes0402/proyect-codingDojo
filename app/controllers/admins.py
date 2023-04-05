@@ -39,5 +39,6 @@ def toppings():
 @app.route("/create_topping", methods=["POST"])
 def create_topping():
     Topping.save(request.form)
+## Poner alerta de que se creó el topping
     return redirect("/toppings")
 

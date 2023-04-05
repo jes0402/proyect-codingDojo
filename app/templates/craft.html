@@ -54,7 +54,7 @@
                                     <label class="form-check-label" for="{{ one_topping.id }}">
                                     {{ one_topping.toppings }} 
                                     </label>
-                                <div>
+                                </div>
                                 {% endfor %}
                             </div>
                     </div>
@@ -64,7 +64,8 @@
                     <button type="submit" class="btn btn-primary craft">Create Order</button>
                 </div>
                 </form>
-            {% endwith %} 
+                {% endwith %}
+            </div>  
         </div>
     </main>
 {% endblock %}

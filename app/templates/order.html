@@ -1,3 +1,4 @@
+
 {% extends 'components/Layout.html' %}
 {% block content %}    
 {% include 'components/Navbar.html' %}
@@ -13,7 +14,14 @@
                     <p>QTY: {{one_order.get("QTY")}}</p>
                     <p>Size: {{one_order.get("size")}}</p>
                     <p>Crust: {{one_order.get("crust")}}</p>
-                    <p>Toppings: {{toppings[0].toppings}}</p>
+                    <p>
+                        Toppings: 
+                        <ul>
+                            {% for topping in toppings %}
+                                <li>{{topping.toppings}}</li>
+                            {% endfor %}
+                        </ul>
+                    </p>
                 <h4>Price: {{one_order.get("precio")}}</h4>
             </div>
                 <h4>Total: {{one_order.get("precio")}}</h4>
