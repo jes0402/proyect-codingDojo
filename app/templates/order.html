@@ -5,29 +5,38 @@
 <main>
     <div class="container-order">
         <div class="container-form">
-            <form action="/order" methods='POST'>
-            <input type="hidden" value={{session.user_id}} name="userSession">
-            <div class="info-order">
-                <h2 class="navbar-text">Your Order</h2>
-                {% for one_order in all_orders %}
-                    <p>Method: {{one_order.get("method")}}</p>
-                    <p>QTY: {{one_order.get("QTY")}}</p>
-                    <p>Size: {{one_order.get("size")}}</p>
-                    <p>Crust: {{one_order.get("crust")}}</p>
-                    <p>
-                        Toppings: 
-                        <ul>
-                            {% for topping in toppings %}
-                                <li>{{topping.toppings}}</li>
-                            {% endfor %}
-                        </ul>
-                    </p>
-                <h4>Price: {{one_order.get("precio")}}</h4>
-            </div>
-                <h4>Total: {{one_order.get("precio")}}</h4>
-                <a class="btn btn-primary" type="submit" href="/delete/{{one_order.get("id")}}">Delete</a>
-                <div class="btn btn-primary" onclick="showMessage()">Purchase</div>
-                {% endfor %}
+            <form action="/charge" method='post'>
+                <input type="hidden" value={{session.user_id}} name="userSession">
+                <div class="info-order">
+                    <h2 class="navbar-text">Your Order</h2>
+                    {% for one_order in all_orders %}
+                        <input type="text" name="order_id" value="{{one_order.get("id")}}" hidden></input>
+                        <p>Method: {{one_order.get("method")}}</p>
+                        <p>QTY: {{one_order.get("QTY")}}</p>
+                        <p>Size: {{one_order.get("size")}}</p>
+                        <p>Crust: {{one_order.get("crust")}}</p>
+                        <p>
+                            Toppings: 
+                            <ul>
+                                {% for topping in toppings %}
+                                    <li>{{topping.toppings}}</li>
+                                {% endfor %}
+                            </ul>
+                        </p>
+                    <h4>Pizza price: {{one_order.get("precio")}}</h4>
+                    <h4>Toppings price: {{toppingsPrice * one_order.get("QTY")}}</h4>
+                    <h4>Total Price: {{totalPrice}}</h4>
+                </div>
+                    <input type="text" name="totalPrice" hidden></input>
+                    <a class="btn btn-primary" type="submit" href="/delete/{{one_order.get("id")}}">Delete</a>
+                    <button class="btn btn-primary" type="submit">Purchase</button>
+                
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="{{ key }}"
+                    data-description="Paga tu pizza"
+                    data-amount={{totalPrice * 100 }}
+                    data-locale="auto"></script>
+                    {% endfor %}
             <form>
         </div>
             <div class="img-order">
@@ -35,4 +44,5 @@
             </div>
         </div>
     </main>
+    
 {% endblock %}

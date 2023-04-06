@@ -5,6 +5,7 @@ from app.models.pizza import Pizza
 from app.models.topping import Topping
 from app.models.user import Users
 from app.models.pizzaTopping import PizzaToppings
+from app.controllers.stripe import stripe_keys
 
 
 @app.route("/craft")
@@ -22,7 +23,6 @@ def craft():
 def create_pizza():
     is_valid = Pizza.validate_pizza(request.form)
     if not is_valid:
-    ## Poner alerta de que no se puede dejar vacio
         return redirect("/")
     if request.form.get('toppings') == None:
         flash("Please select at least one topping","craft")
@@ -48,25 +48,21 @@ def create_pizza():
             "toppings_id": topping
         }
         pizza_toppings = PizzaToppings.save(data_pizza_toppings )
-    # data_pizza_toppings = {
-    #     "pizza_id": pizza_id[0]['id'],
-    #     "toppings_id": request.form["toppings"]
-    # }
-    # pizza_toppings = PizzaToppings.save(data_pizza_toppings )
     toppings = Topping.get_toppings_by_id(toppings_list)
-    print(toppings)
     orders = Order.get_order_info(dataOrderID)
-    print("hola", orders)
-    return render_template('order.html', all_orders = orders, toppings = toppings )
+    toppingsPrice = len(toppings) * 1.5
+    print(orders[0])
+    totalPrice = orders[0]['precio'] + toppingsPrice
+    return render_template('order.html', all_orders = orders, toppings = toppings, key=stripe_keys['publishable_key'], toppingsPrice = toppingsPrice, totalPrice = totalPrice)
 
 
-@app.route("/order")
-def account_order():
-    if 'user_id' not in session:
-        return redirect('/')
-    orders = Order.get_all_orders()
+# @app.route("/orders")
+# def account_order():
+#     if 'user_id' not in session:
+#         return redirect('/')
+#     orders = Order.get_all_orders_info()
     
-    return render_template('order.html', all_orders = orders, toppings = [1,2,3])
+#     return render_template('order.html', all_orders = orders, toppings = [1,2,3])
 
 @app.route("/delete/<int:id>")
 def delete_order(id):
@@ -75,3 +71,12 @@ def delete_order(id):
     }
     orders = Order.delete_order(data)
     return redirect('/home')
+
+@app.route("/cancel/<int:id>")
+def cancel_order(id):
+    data = {
+        'id': id
+    }
+    orders = Order.cancel_order(data)
+    return redirect('/home')
+

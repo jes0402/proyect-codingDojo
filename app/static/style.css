@@ -283,11 +283,21 @@ span{
 
 .container_toppings {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     height: 100vh;
     width: 100%;
+}
+
+.container_toppings_table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 40vw;
+    margin-right: 30px;
 }
 
 .form-toppings {
@@ -300,6 +310,16 @@ span{
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 30px;
+}
+
+.container_toppings_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+    height: 100%;
+    margin-left: 30px;
 }
 
 .btn-primary-topping {
@@ -317,6 +337,9 @@ span{
 .btn-primary-topping:hover {
     background-color: #eaafc8;
 }
+
+
+
 /************ Orders-Admin ************/
 .container_orders table,tr,th, td{
     border: 1px solid;

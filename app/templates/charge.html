@@ -1,0 +1,33 @@
+{% extends 'components/Layout.html' %}
+
+{% block content %}
+{% include 'components/AdminNavbar.html'%}
+
+<main class="container_orders">
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Estado</th>
+            <th>Action</th>
+        </tr>
+        {% for order in orders %}
+        <tr>
+            <td>{{order.get("created_at")}}</td>
+            <td>{%if order.get("completo") == true %}
+                Completado
+                {% elif order.get("pendiente") == true %}
+                Pendiente
+                {% elif order.get("cancelado") == true %}
+                Cancelado
+                {% else %}
+                Error
+                {% endif %}
+            </td>
+            <td><a href="/cancel/{{order.get("id")}}">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</main>
+
+
+{% endblock %}
