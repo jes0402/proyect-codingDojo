@@ -53,24 +53,6 @@ class Pizza:
         query = "select id from pizza where orders_id = %(order_id)s"
         results = connectToMySQL('pizzabd').query_db(query,data)
         return results
-    
-    @classmethod
-    def get_one_with_toppings( cls , data ):
-        query = "SELECT * FROM pizza LEFT JOIN pizza_toppings ON pizza_toppings.pizza_id = pizza.id LEFT JOIN toppings ON pizza_toppings.toppings_id = toppings.id WHERE pizza.id = %(pizza_id)s;"
-        results = connectToMySQL('pizzabd').query_db( query , data )
-        print(results)
-        pizza = cls( results[0] )
-        for row in results:
-            if not row["toppings.id"]:
-                break
-            topping_data = {
-                "id" : row["toppings.id"],
-                "toppings" : row["toppings.toppings"],
-                "created_at" : row["toppings.created_at"],
-                "updated_at" : row["toppings.updated_at"]
-            }
-            pizza.toppings.append( topping.Topping( topping_data ) )
-        return pizza
 
     @staticmethod
     def validate_pizza(data):

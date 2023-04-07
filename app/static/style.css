@@ -15,7 +15,7 @@ body {
 .collapse{
     justify-content: flex-end;
 }
-.container-register, .contaner-login, .container-account{
+.container-register, .contaner-login{
     display: flex;
     margin: 50px auto;
     width: 50%;
@@ -95,10 +95,6 @@ body {
     display: flex;
     flex-direction: row;
 }
-.container-account{
-    width: 50%;
-    margin: 2%;
-}
 
 .navbar-brand {
     color: #fff;
@@ -135,6 +131,16 @@ body {
 .container-form form {
     margin: 30px;
     width: 300px;
+}
+
+.container-info-order-{
+    border: 1px solid;
+    border-color: black;
+    box-shadow: 0px 0px 5px 1px black;
+    width: 350px;
+    font-size: 20px;
+    padding: 10px;
+    margin: 5px;
 }
 
 
@@ -273,21 +279,58 @@ span{
 }
 
 /***************** Account *****************/
+
+.container-account{
+    display: flex;
+    margin: 20px;
+    width: 45%;
+    background-color: rgb(238, 235, 231);
+    border-radius: 10px;
+    padding: 20px;
+    height: 550px;
+}
+
+.container-info{
+    display: flex;
+    margin: 20px;
+    width: 45%;
+    background-color: rgb(238, 235, 231);
+    border-radius: 10px;
+    padding: 20px;
+    height: 550px;
+}
 .row-account{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
+.info-order{
+    border: 1px solid;
+    border-color: black;
+    box-shadow: 0px 0px 5px 1px black;
+    width: 100%;
+    font-size: 21px;
+}
 /************ Toppings ************/
 
 .container_toppings {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     height: 100vh;
     width: 100%;
+}
+
+.container_toppings_table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 40vw;
+    margin-right: 30px;
 }
 
 .form-toppings {
@@ -300,6 +343,16 @@ span{
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 30px;
+}
+
+.container_toppings_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+    height: 100%;
+    margin-left: 30px;
 }
 
 .btn-primary-topping {
@@ -317,6 +370,9 @@ span{
 .btn-primary-topping:hover {
     background-color: #eaafc8;
 }
+
+
+
 /************ Orders-Admin ************/
 .container_orders table,tr,th, td{
     border: 1px solid;

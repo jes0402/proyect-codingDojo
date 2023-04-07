@@ -70,13 +70,16 @@ def home_order():
 
 @app.route("/account")
 def account():
+    user_id = session['user_id']
     if 'user_id' not in session:
         return redirect('/')
     data = {
-    "id": session['user_id']
+    "id": user_id
     }
     user = Users.get_one(data)
-    return render_template('account_info.html', user = user)
+    orders = Order.get_orders_for_idUser(data)
+    print("holaa",orders )
+    return render_template('account_info.html', user = user, all_orders = orders )
 
 @app.route("/account", methods=["POST"])
 def account_info():
