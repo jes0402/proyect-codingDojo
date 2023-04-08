@@ -23,7 +23,7 @@ def craft():
 def create_pizza():
     is_valid = Pizza.validate_pizza(request.form)
     if not is_valid:
-        return redirect("/")
+        return redirect("/craft")
     if request.form.get('toppings') == None:
         flash("Please select at least one topping","craft")
         return redirect('/craft')

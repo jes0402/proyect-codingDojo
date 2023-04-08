@@ -7,7 +7,7 @@
         <div class="container-form">
             <form action="/charge" method='post'>
                 <input type="hidden" value={{session.user_id}} name="userSession">
-                <div class="info-order">
+                <div class="container-info-order-">
                     <h2 class="navbar-text">Your Order</h2>
                     {% for one_order in all_orders %}
                         <input type="text" name="order_id" value="{{one_order.get("id")}}" hidden></input>

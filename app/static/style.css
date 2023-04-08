@@ -15,7 +15,7 @@ body {
 .collapse{
     justify-content: flex-end;
 }
-.container-register, .contaner-login, .container-account{
+.container-register, .contaner-login{
     display: flex;
     margin: 50px auto;
     width: 50%;
@@ -95,10 +95,6 @@ body {
     display: flex;
     flex-direction: row;
 }
-.container-account{
-    width: 50%;
-    margin: 2%;
-}
 
 .navbar-brand {
     color: #fff;
@@ -137,6 +133,16 @@ body {
     width: 300px;
 }
 
+.container-info-order-{
+    border: 1px solid;
+    border-color: black;
+    box-shadow: 0px 0px 5px 1px black;
+    width: 350px;
+    font-size: 20px;
+    padding: 10px;
+    margin: 5px;
+}
+
 
 /************* Craft ************/
 
@@ -150,7 +156,7 @@ body {
 
 .container-craft-form {
     margin: 20px;
-    height: 500px;
+    height: 700px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -163,7 +169,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    align-content: flex-start;
+    align-content: stretch;
     width: 400px;
     height: 100%;
     padding: 0 10px;
@@ -273,12 +279,39 @@ span{
 }
 
 /***************** Account *****************/
+
+.container-account{
+    display: flex;
+    margin: 20px;
+    width: 45%;
+    background-color: rgb(238, 235, 231);
+    border-radius: 10px;
+    padding: 20px;
+    height: 550px;
+}
+
+.container-info{
+    display: flex;
+    margin: 20px;
+    width: 45%;
+    background-color: rgb(238, 235, 231);
+    border-radius: 10px;
+    padding: 20px;
+    height: 550px;
+}
 .row-account{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
+.info-order{
+    border: 1px solid;
+    border-color: black;
+    box-shadow: 0px 0px 5px 1px black;
+    width: 100%;
+    font-size: 21px;
+}
 /************ Toppings ************/
 
 .container_toppings {

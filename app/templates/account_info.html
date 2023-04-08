@@ -27,7 +27,7 @@
         </nav>
     </header>
     <main>
-    <h1 class="title-account">Account Info</h1>
+    <h1 class="title-account">Account Info </h1>
     <div class="container-principal">
         <div class="container-account">
             <form action="/account" method="POST" class="row-account g-3">
@@ -66,6 +66,15 @@
                 </div>
             </form>
         </div>
+        <div class="container-info">
+            <div class="info-order">
+                {% for list_order in all_orders %}
+                    <ul>
+                    <li>{{list_order.get("created_at")}}, Size: {{list_order.get("size")}} ,Price: {{list_order.get("precio")}}</li>
+                    </ul>
+                {% endfor %}
+            </div>
+        <div>
     </div>
     </main>
 </body>

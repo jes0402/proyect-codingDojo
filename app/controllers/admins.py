@@ -39,6 +39,15 @@ def check_admin():
 
 @app.route("/orders")
 def orders_admin():
+    user_id = session['user_id']
+    if 'user_id' not in session:
+            return redirect("/login")
+    data = {
+    "id": session['user_id']
+    }
+    user = Users.get_one(data)
+    if user[0]["admin"] != 1:
+        return render_template('home.html')
     orders = Order.get_all_orders_info()
     for order in orders:
         if order["completo"] == 1:
@@ -60,33 +69,34 @@ def orders_admin():
     #     price = "not found"
     # driver.quit()
     # print(order['cost'])
-         
     return render_template('orders_admin.html', all_orders = orders )
 
 @app.route("/toppings")
 def toppings():
-    toppings = Topping.get_all()
-    for topping in toppings:
-        print(topping['url'])
-    #     topping['cost'] = driver.get(topping['url'])
-    #     time.sleep(5)
-    #     price = driver.find_element(By.CSS_SELECTOR, "div[class*='price-per-um__pdp'")
-    # if price:
-    #     price = price.text
-    #     price = ''.join(filter(str.isdigit, price))
-    #     price = int(price)
-    # else:
-    #     price = "not found"
-    # driver.quit()
-    print("hola " + topping['cost'])
-    return render_template('toppings.html', toppings = toppings)
-
+    user_id = session['user_id']
+    if 'user_id' not in session:
+        return redirect("/login")
+    data = {
+    "id": session['user_id']
+    }
+    user = Users.get_one(data)
+    if user[0]["admin"] != 1:
+        return render_template('home.html')
+    else:
+        return render_template('toppings.html')
 
 @app.route("/create_topping", methods=["POST"])
 def create_topping():
     Topping.save(request.form)
-## Poner alerta de que se creó el topping
-    return redirect("/toppings")
+    if request.form.get('toppings') != None:
+        flash("your topping has been created successfully!")
+        return redirect('/toppings')
+    
+    
+@app.route('/logout')
+def logoutAdmin():
+    session.clear()
+    return redirect('/')
 
 @app.route("/edit/<int:id>")
 def edit_topping(id):

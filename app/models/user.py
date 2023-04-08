@@ -31,7 +31,7 @@ class Users:
     
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO users ( admin, first_name , last_name , email , address, city, state, password,created_at, updated_at ) VALUES (false, %(first_name)s,%(last_name)s,%(email)s,%(address)s,%(city)s,%(state)s,%(password)s, NOW(),NOW())"
+        query = "INSERT INTO users ( admin, first_name , last_name , email , address, city, state, password,created_at, updated_at ) VALUES (%(admin)s, %(first_name)s,%(last_name)s,%(email)s,%(address)s,%(city)s,%(state)s,%(password)s, NOW(),NOW())"
         # data es un diccionario que se pasará al método de guardar desde server.py
         return connectToMySQL('pizzabd').query_db( query, data )
     

@@ -3,8 +3,19 @@
 {% include 'components/Navbar.html' %}
     <main class="container-craft">
         <div class="container-craft-form">
+            <div class="error-message">
+                {% with messages = get_flashed_messages(category_filter=['craft']) %} 
+                {% if messages%}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Error:</strong>
+                        {% for message in messages %}
+                            <p class="m-0"> - {{message}}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %} 
+                {% endwith %}
+            </div>
             <h1 class="title_craft">CRAFT-A-PIZZA</h1>
-            {% with messages = get_flashed_messages(category_filter=['login'])%}
             <form action="/order" method="POST" class="row form_craft g-5" >
                 <input type="hidden" value={{session.user_id}} name="userSession">
                 <div class="col-md-12 craft">
@@ -64,7 +75,6 @@
                     <button type="submit" class="btn btn-primary craft">Create Order</button>
                 </div>
                 </form>
-                {% endwith %}
             </div>  
         </div>
     </main>

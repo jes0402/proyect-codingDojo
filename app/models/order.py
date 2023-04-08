@@ -28,6 +28,12 @@ class Order:
         query = "SELECT * FROM orders LEFT JOIN pizza ON pizza.orders_id = orders.id JOIN pizza_toppings ON pizza_toppings.pizza_id = pizza.id JOIN toppings ON toppings.id = pizza_toppings.toppings_id"
         results = connectToMySQL('pizzabd').query_db(query, data)
         return results
+    
+    @classmethod
+    def get_orders_for_idUser(cls, data):
+        query = "SELECT * FROM orders LEFT JOIN pizza ON pizza.orders_id = orders.id JOIN pizza_toppings ON pizza_toppings.pizza_id = pizza.id JOIN toppings ON toppings.id = pizza_toppings.toppings_id WHERE users_id = %(id)s"
+        results = connectToMySQL('pizzabd').query_db(query, data)
+        return results
 
     @classmethod
     def get_order_info(cls, data):
