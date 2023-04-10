@@ -4,27 +4,14 @@ from app.models.topping import Topping
 from app.models.user import Users
 from app.models.order import Order
 
-import time 
-from selenium import webdriver 
-from selenium.webdriver import Chrome 
-from selenium.webdriver.chrome.service import Service 
-from selenium.webdriver.common.by import By 
-from webdriver_manager.chrome import ChromeDriverManager
+import decimal
 
-# start by defining the options 
-options = webdriver.ChromeOptions() 
-# we don't need it as the page also populated with the running javascript code. 
-options.page_load_strategy = 'none' 
-# this returns the path web driver downloaded 
-chrome_path = ChromeDriverManager().install() 
-chrome_service = Service(chrome_path) 
-# pass the defined options and service objects to initialize the web driver 
-driver = Chrome(options=options, service=chrome_service) 
-driver.implicitly_wait(5)
+from app.api.GrosseryStore import get_price
+from app.api.VariablePrices import getPriceSize, getPriceCrust
 
 
 @app.route("/dashboard")
-def check_admin():
+def dashboard():
     user_id = session['user_id']
     if 'user_id' not in session:
             return redirect("/login")
@@ -34,8 +21,36 @@ def check_admin():
     user = Users.get_one(data)
     if user[0]["admin"] != 1:
         return render_template('home.html')
-    else:
-        return render_template('dashboard.html')
+    orders = Order.get_all_orders_info()
+    print("hola", orders)
+    ordenes = []
+    ordenes[0]["completadas"] = []
+    ordenes["pendientes"] = 0
+    ordenes["canceladas"] = 0
+    # ordenes["qty"] = len(orders)
+    for order in orders:
+        if order["completo"] == 1:
+            ordenes["completadas"] += 1
+        if order["pendiente"] == 1:
+            ordenes["pendientes"] += 1
+        if order["cancelado"] == 1:
+            ordenes["canceladas"] += 1
+    ordenes["ventas"] = 0
+    ordenes["costos"] = 0
+    for order in orders:
+        ordenes["ventas"] += order["precio"]
+        cost = get_price(order["url"])
+        qty = order["QTY"]
+        medida = order["medida"]
+        totalCostUsd = qty * ((cost * medida) /800)
+        order["toppingCost"] = totalCostUsd
+        sizePrice = getPriceSize(order["size"])
+        crustPrice = getPriceCrust(order["crust"])
+        order["structureCost"] = sizePrice + crustPrice
+        order["costoTotal"] = totalCostUsd + sizePrice + crustPrice
+        ordenes["costos"] += order["costoTotal"]
+    return render_template('orders_admin.html', all_orders = ordenes )
+
 
 @app.route("/orders")
 def orders_admin():
@@ -56,19 +71,16 @@ def orders_admin():
             order["estado"] = "pendiente"
         if order["cancelado"] == 1:
             order["estado"] = "cancelado"
+    print("hola", orders)
     for order in orders:
-        print(order['url'])
-    #     order['cost'] = driver.get(order['url'])
-    #     time.sleep(5)
-    #     price = driver.find_element(By.CSS_SELECTOR, "div[class*='price-per-um__pdp']")
-    # if price:
-    #     price = price.text
-    #     price = ''.join(filter(str.isdigit, price))
-    #     price = int(price)
-    # else:
-    #     price = "not found"
-    # driver.quit()
-    # print(order['cost'])
+        cost = get_price(order["url"])
+        qty = order["QTY"]
+        medida = order["medida"]
+        totalCostUsd = qty * ((cost * medida) /800)
+        order["toppingCost"] = totalCostUsd
+        sizePrice = getPriceSize(order["size"])
+        crustPrice = getPriceCrust(order["crust"])
+        order["structureCost"] = sizePrice + crustPrice
     return render_template('orders_admin.html', all_orders = orders )
 
 @app.route("/toppings")
@@ -80,10 +92,15 @@ def toppings():
     "id": session['user_id']
     }
     user = Users.get_one(data)
+    dataToppings = Topping.get_all()
+    for dataTopping in dataToppings:
+        cost = get_price(dataTopping["url"])
+        dataTopping["cost"] = cost
+    
     if user[0]["admin"] != 1:
         return render_template('home.html')
     else:
-        return render_template('toppings.html')
+        return render_template('toppings.html', dataToppings = dataToppings, usd = 800)
 
 @app.route("/create_topping", methods=["POST"])
 def create_topping():

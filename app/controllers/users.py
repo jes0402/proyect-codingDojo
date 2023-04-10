@@ -58,7 +58,7 @@ def login():
     user_session = Users.get_one(data)
     print("hola", user_session)
     if user_session[0]["admin"] == 1:
-        return redirect('/dashboard')
+        return redirect('/orders')
     else:
         return redirect('/home')
 

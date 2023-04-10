@@ -8,6 +8,8 @@ class Topping:
     def __init__( self , data ):
         self.id = data['id']
         self.toppings = data['toppings']
+        self.url = data['url']
+        self.medida = data['medida']
         self.updated_at = data['created_at']
         self.updated_at = data['updated_at']
         self.pizza = []
@@ -15,7 +17,7 @@ class Topping:
     
     @classmethod
     def save(cls, data ):
-        query = "INSERT INTO toppings ( toppings , url, created_at, updated_at ) VALUES (%(toppings)s, %(url)s, NOW(),NOW())"
+        query = "INSERT INTO toppings ( toppings , url, medida, created_at, updated_at ) VALUES (%(toppings)s, %(url)s, %(medida)s, NOW(),NOW())"
         # data es un diccionario que se pasará al método de guardar desde server.py
         result = connectToMySQL('pizzabd').query_db( query, data )
         return result
@@ -49,7 +51,7 @@ class Topping:
     
     @classmethod
     def update(cls, data):
-        query = "UPDATE toppings SET toppings = %(toppings)s, url = %(url)s, updated_at = NOW() WHERE id = %(toppings_id)s"
+        query = "UPDATE toppings SET toppings = %(toppings)s, url = %(url)s, medida = %(medida)s, updated_at = NOW() WHERE id = %(toppings_id)s"
         results = connectToMySQL('pizzabd').query_db(query,data)
         return results
 

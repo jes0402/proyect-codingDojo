@@ -29,8 +29,6 @@
                 </div>
                     <input type="text" name="totalPrice" hidden></input>
                     <a class="btn btn-primary" type="submit" href="/delete/{{one_order.get("id")}}">Delete</a>
-                    <button class="btn btn-primary" type="submit">Purchase</button>
-                
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-key="{{ key }}"
                     data-description="Paga tu pizza"

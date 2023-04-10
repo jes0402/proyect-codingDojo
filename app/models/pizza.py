@@ -50,7 +50,7 @@ class Pizza:
     
     @classmethod
     def get_pizza_id(cls, data):
-        query = "select id from pizza where orders_id = %(order_id)s"
+        query = "SELECT id from pizza where orders_id = %(order_id)s"
         results = connectToMySQL('pizzabd').query_db(query,data)
         return results
 

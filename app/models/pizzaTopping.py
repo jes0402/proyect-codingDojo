@@ -16,11 +16,12 @@ class PizzaToppings:
     
     @classmethod
     def save(cls, data ):
+        print(data)
         query = "INSERT INTO pizza_toppings ( pizza_id, toppings_id, created_at, updated_at) VALUES"
         # data es un diccionario que se pasará al método de guardar desde server.py
         values = []
         for toppings_id in data['toppings_id']:
-            values.append("(%(pizza_id)s, %(topping_id)s, NOW(), NOW())")
+            values.append("(%(pizza_id)s, %(toppings_id)s, NOW(), NOW())")
         query += ", ".join(values)
         result = connectToMySQL('pizzabd').query_db(query, data)
         return result

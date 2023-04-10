@@ -42,12 +42,13 @@ def create_pizza():
         'toppings': toppings_list
     }
     pizza = Pizza.save(data_pizza)
+    pizzaId = Pizza.get_pizza_id(data_pizza)
     for topping in toppings_list:
         data_pizza_toppings = {
-            "pizza_id": pizza,
+            "pizza_id": pizzaId[0]['id'],
             "toppings_id": topping
         }
-        pizza_toppings = PizzaToppings.save(data_pizza_toppings )
+        PizzaToppings.save(data_pizza_toppings)
     toppings = Topping.get_toppings_by_id(toppings_list)
     orders = Order.get_order_info(dataOrderID)
     toppingsPrice = len(toppings) * 1.5

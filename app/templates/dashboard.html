@@ -3,7 +3,30 @@
 {% include 'components/AdminNavbar.html'%}
 
 <main class="container_dashboard">
-<h1>Welcome</h1>
+<h1>Hola!</h1>
+
+    <table>
+        <tr>
+            <th>Q de órdenes</th>
+            <th>Q de órdenes completadas</th>
+            <th>Q de órdenes pendientes</th>
+            <th>Q de órdenes canceladas</th>
+            <th>Ventas Totales</th>
+            <th>Costos Totales</th>
+            <th>Ganancias Totales</th>
+        </tr>
+        {% for list_order in all_orders %}
+        <tr>
+            <td>{{ordenes.get("qty")}}</td>
+            <td>{{ordenes.get("completadas")}}</td>
+            <td>{{ordenes.get("pendientes")}}</td>
+            <td>{{ordenes.get("canceladas")}}</td>
+            <td>{{ordenes.get("ventas")}}</td>
+            <td>{{ordenes.get("costos")}}</td>
+            <td>{{ ordenes.get("ventas") - ordenes.get("costos") }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </main>
 
 {% endblock %}

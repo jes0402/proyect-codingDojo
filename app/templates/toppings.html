@@ -12,13 +12,6 @@
     </ul>
     {% endif %}
     {% endwith %}
-    <form action="/create_topping" method="post" class="form-toppings">
-        <h1 for="toppings">Toppings</h1>
-        <div class="form-toppings-input">
-            <input type="text" class="form-control" id="toppings" name="toppings" placeholder="Enter Toppings">
-        </div>
-        <button type="submit" class="btn btn-primary-topping">Submit</button>
-    </form>
     <div class="container_toppings_table">
         <table>
             <tr>
@@ -26,14 +19,18 @@
                 <th>Topping</th>
                 <th>Url</th>
                 <th>Cost by Kg.</th>
+                <th>Meassure</th>
+                <th>Cost by unit in usd</th>
                 <th>Action</th>
             </tr>
-            {% for list_topping in toppings %}
+            {% for list_topping in dataToppings %}
             <tr>
                 <td>{{list_topping.get("id")}}</td>
                 <td>{{list_topping.get("toppings")}}</td>
                 <td>{{list_topping.get("url")}}</td>
                 <td>{{list_topping.get("cost")}}</td>
+                <td>{{list_topping.get("medida")}}</td>
+                <td>{{(list_topping.get("cost") * list_topping.get("medida"))/ usd}}</td>
                 <td><a href="/edit/{{list_topping.get("id")}}">Edit</a></td>
             </tr>
             {% endfor %}
@@ -46,10 +43,13 @@
                 <input type="text" class="form-control" id="toppings" name="toppings" placeholder="Enter Toppings">
             </div>
             <div class="form-toppings-input">
-                <input type="text" class="form-control" id="url" name="url" placeholder="Enter url from Lider.cl">
+                <input type="text" class="form-control" id="url" name="url" placeholder="Enter url from veggo.cl">
+            </div>
+            <div class="form-toppings-input">
+                <input type="text" class="form-control" id="medida" name="medida" placeholder="Meassure 0.3">
             </div>
             <button type="submit" class="btn btn-primary-topping">Submit</button>
-            <a href="www.lider.cl">ir a lider.cl</a>
+            <a href="http://www.veggo.cl" target="_blank">ir a veggo.cl</a>
         </form>
         
 </div>
