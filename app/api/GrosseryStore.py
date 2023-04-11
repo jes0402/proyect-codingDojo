@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 URL = "https://veggo.cl/tomate-kilogramo.html"
 
 def get_price(URL):
-
     page = requests.get(URL)
 
     soup = BeautifulSoup(page.content, "html.parser")

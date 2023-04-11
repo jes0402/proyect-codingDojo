@@ -316,21 +316,28 @@ span{
 
 .container_toppings {
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
     width: 100%;
+    margin: 20px 0px;
 }
 
-.container_toppings_table {
+.container_toppings_table{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
-    width: 40vw;
-    margin-right: 30px;
+    width: 8%;
+    margin-top: 40px;
+    background-color: rgb(238, 235, 231);
+    border-radius: 10px;
+    padding: 10px;
+}
+.table, tr, th,td{
+    height: 30px;
 }
 
 .form-toppings {
@@ -371,21 +378,33 @@ span{
     background-color: #eaafc8;
 }
 
-
+.container-edit-topping{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+    height: 100%;
+    margin: 30px auto;
+}
+.flashes{
+    font-size: 22px;
+    text-align: center;
+}
 
 /************ Orders-Admin ************/
-.container_orders table,tr,th, td{
+.container_orders table,thead,tr,th, td{
     border: 1px solid;
     border-color: black;
     margin: 25px auto;
-    height: 40px;
+    height: 30px;
     width: 470px;
     font-size: 20px;
 }
 .container_orders{
     display: flex;
     margin: 50px auto;
-    width: 40%;
+    width: 60%;
     background-color: rgb(238, 235, 231);
     border-radius: 10px;
     padding: 10px;
@@ -393,4 +412,14 @@ span{
 
 .container_orders a{
     color: black
+}
+.table th {
+    border-top: 1px solid black;
+    border-color: black;
+
+}
+
+.table-superior{
+    border-top: 1px solid black;
+    border-color: black;
 }
