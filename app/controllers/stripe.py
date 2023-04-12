@@ -4,11 +4,16 @@ from flask import Flask, render_template, request
 import stripe
 from app.models.order import Order
 
-stripe_keys = {
+""" stripe_keys = {
     'secret_key': os.environ['SECRET_KEY'],
     'publishable_key': os.environ['PUBLISHABLE_KEY']
-} 
+} """
 
+
+stripe_keys = {
+    'secret_key': "sk_test_CGGvfNiIPwLXiDwaOfZ3oX6Y",
+    'publishable_key': "pk_test_Dt4ZBItXSZT1EzmOd8yCxonL"
+}  
 
 
 stripe.api_key = stripe_keys['secret_key']

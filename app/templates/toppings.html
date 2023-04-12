@@ -5,28 +5,28 @@
 
 {% with messages = get_flashed_messages() %}
 {% if messages %}
-<ul class="flashes">
+<div class="flashes">
     {% for message in messages %}
-    <li>{{ message }}</li>
+    <strong>{{ message }}</strong>
     {% endfor %}
-</ul>
+</div>
 {% endif %}
 {% endwith %}
 <main class="container_toppings">
     <div class="container_toppings_table">
-        <table>
-            <tr>
-                <th>Topping Id</th>
-                <th>Topping</th>
-                <th>Url</th>
-                <th>Cost by Kg.</th>
-                <th>Meassure</th>
-                <th>Cost by unit in usd</th>
-                <th>Action</th>
+        <table class="table table-striped">
+            <tr class:"table-superior">
+                <th scope="col">Topping Id</th>
+                <th scope="col">Topping</th>
+                <th scope="col">Url</th>
+                <th scope="col">Cost by Kg.</th>
+                <th scope="col">Meassure</th>
+                <th scope="col">Cost by unit in usd</th>
+                <th scope="col">Action</th>
             </tr>
             {% for list_topping in dataToppings %}
             <tr>
-                <td>{{list_topping.get("id")}}</td>
+                <td scope="row">{{list_topping.get("id")}}</td>
                 <td>{{list_topping.get("toppings")}}</td>
                 <td>{{list_topping.get("url")}}</td>
                 <td>{{list_topping.get("cost")}}</td>
@@ -51,9 +51,8 @@
             </div>
             <button type="submit" class="btn btn-primary-topping">Submit</button>
             <a href="http://www.veggo.cl" target="_blank">ir a veggo.cl</a>
-        </form>
-        
-</div>
+        </form> 
+    </div>
 </main>
 
 {% endblock %}

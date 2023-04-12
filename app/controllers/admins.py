@@ -9,7 +9,6 @@ import decimal
 from app.api.GrosseryStore import get_price
 from app.api.VariablePrices import getPriceSize, getPriceCrust
 
-
 @app.route("/dashboard")
 def dashboard():
     user_id = session['user_id']

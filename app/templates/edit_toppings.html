@@ -1,8 +1,7 @@
 {% extends 'components/Layout.html' %}
 {% block content %}
 {% include 'components/AdminNavbar.html'%}
-
-<main class="">
+<main class="container-edit-topping">
     <form action="/update_toppings/{{topping.id}}" method="post" class="form-toppings">
             <h1 for="toppings">Edit {{topping.toppings}} </h1>
             <div class="form-toppings-input">
@@ -18,5 +17,4 @@
             <a href="http://www.veggo.cl" target="_blank">ir a veggo.cl</a>
     </form>
 </main>    
-
 {% endblock %}

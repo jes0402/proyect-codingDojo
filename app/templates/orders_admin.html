@@ -2,21 +2,22 @@
 {% block content %}
 {% include 'components/AdminNavbar.html'%}
 
+<div id="progress-bar"></div>
 <main class="container_orders">
-    <table class="table table-striped-columns">
-        <tr>
-            <th>Order Id</th>
-            <th>Date</th>
-            <th>Costo Base</th>
-            <th>Costo Toppings</th>
-            <th>Precio de Venta</th>
-            <th>Ganancia</th>
-            <th>Estado</th>
-            <th>Action</th>
+    <table class="table table-striped">
+            <tr>
+            <th scope="col">Order Id</th>
+            <th scope="col">Date</th>
+            <th scope="col">Costo Base</th>
+            <th scope="col">Costo Toppings</th>
+            <th scope="col">Precio de Venta</th>
+            <th scope="col">Ganancia</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Action</th>
         </tr>
         {% for list_order in all_orders %}
         <tr>
-            <td>{{list_order.get("id")}}</td>
+            <td scope="row">{{list_order.get("id")}}</td>
             <td>{{list_order.get("created_at")}}</td>
             <td>{{list_order.get("structureCost")}}</td>
             <td>{{list_order.get("toppingCost")}}</td>
