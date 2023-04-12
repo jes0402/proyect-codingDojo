@@ -23,3 +23,5 @@ def getPriceCrust(crust):
     if crust == "Thin Crust":
             return thin
     return 0
+
+usd = 800

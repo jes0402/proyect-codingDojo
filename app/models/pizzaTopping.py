@@ -24,6 +24,7 @@ class PizzaToppings:
             values.append("(%(pizza_id)s, %(toppings_id)s, NOW(), NOW())")
         query += ", ".join(values)
         result = connectToMySQL('pizzabd').query_db(query, data)
+        print("checkpoint",result)
         return result
         
     @classmethod
@@ -41,3 +42,12 @@ class PizzaToppings:
         for topping in results:
             toppings.append(topping)
         return toppings
+    
+    @classmethod
+    def get_pizza_toppings_by_pizza_id(cls, data):
+        query = "select * from pizza_toppings where pizza_id = %(pizza_id)s"
+        results = connectToMySQL('pizzabd').query_db( query, data )
+        pizza_toppings = []
+        for pizza_topping in results:
+            pizza_toppings.append(pizza_topping)
+        return pizza_toppings

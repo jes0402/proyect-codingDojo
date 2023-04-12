@@ -25,9 +25,12 @@ class Order:
     
     @classmethod
     def get_all_orders_info(cls, data = {}):
-        query = "SELECT * FROM orders LEFT JOIN pizza ON pizza.orders_id = orders.id JOIN pizza_toppings ON pizza_toppings.pizza_id = pizza.id JOIN toppings ON toppings.id = pizza_toppings.toppings_id"
+        query = "SELECT * FROM orders"
         results = connectToMySQL('pizzabd').query_db(query, data)
-        return results
+        orders = []
+        for order in results:
+            orders.append(order)
+        return orders
     
     @classmethod
     def get_orders_for_idUser(cls, data):
@@ -69,6 +72,12 @@ class Order:
     @classmethod
     def cancel_order(cls, data):
         query = "UPDATE orders SET completo = false, pendiente = false, cancelado = true WHERE id = %(id)s"
+        results = connectToMySQL('pizzabd').query_db(query, data)
+        return results
+    
+    @classmethod
+    def complete_order(cls, data):
+        query = "UPDATE orders SET completo = true, pendiente = false, cancelado = false WHERE id = %(id)s"
         results = connectToMySQL('pizzabd').query_db(query, data)
         return results
     

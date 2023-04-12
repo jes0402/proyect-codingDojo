@@ -13,6 +13,9 @@
 {% endif %}
 {% endwith %}
 <main class="container_toppings">
+    <div class="link">
+        <a href="/update/prices">Update Cost</a>
+    </div>
     <div class="container_toppings_table">
         <table class="table table-striped">
             <tr class:"table-superior">
@@ -31,7 +34,7 @@
                 <td>{{list_topping.get("url")}}</td>
                 <td>{{list_topping.get("cost")}}</td>
                 <td>{{list_topping.get("medida")}}</td>
-                <td>{{(list_topping.get("cost") * list_topping.get("medida"))/ usd}}</td>
+                <td>{{( list_topping.get("cost") * list_topping.get("medida"))}}</td>
                 <td><a href="/edit/{{list_topping.get("id")}}">Edit</a></td>
             </tr>
             {% endfor %}
@@ -50,7 +53,7 @@
                 <input type="text" class="form-control" id="medida" name="medida" placeholder="Meassure 0.3">
             </div>
             <button type="submit" class="btn btn-primary-topping">Submit</button>
-            <a href="http://www.veggo.cl" target="_blank">ir a veggo.cl</a>
+            <a href="https://www.veggo.cl" target="_blank">ir a veggo.cl</a>
         </form> 
     </div>
 </main>

@@ -57,21 +57,18 @@ def create_pizza():
     return render_template('order.html', all_orders = orders, toppings = toppings, key=stripe_keys['publishable_key'], toppingsPrice = toppingsPrice, totalPrice = totalPrice)
 
 
-# @app.route("/orders")
-# def account_order():
-#     if 'user_id' not in session:
-#         return redirect('/')
-#     orders = Order.get_all_orders_info()
-    
-#     return render_template('order.html', all_orders = orders, toppings = [1,2,3])
-
 @app.route("/delete/<int:id>")
 def delete_order(id):
+    if 'user_id' not in session:
+        return redirect('/')
+    data = {
+    "id": session['user_id']
+    }
     data = {
         'id': id
     }
     orders = Order.delete_order(data)
-    return redirect('/home')
+    return redirect('/orders')
 
 @app.route("/cancel/<int:id>")
 def cancel_order(id):
@@ -79,5 +76,13 @@ def cancel_order(id):
         'id': id
     }
     orders = Order.cancel_order(data)
-    return redirect('/home')
+    return redirect('/orders')
+
+@app.route("/complete/<int:id>")
+def complete_order(id):
+    data = {
+        'id': id
+    }
+    orders = Order.complete_order(data)
+    return redirect('/orders')
 

@@ -53,6 +53,12 @@ class Pizza:
         query = "SELECT id from pizza where orders_id = %(order_id)s"
         results = connectToMySQL('pizzabd').query_db(query,data)
         return results
+    
+    @classmethod
+    def get_pizza_by_order_id(cls, data):
+        query = "SELECT * from pizza where orders_id = %(order_id)s"
+        results = connectToMySQL('pizzabd').query_db(query,data)
+        return results
 
     @staticmethod
     def validate_pizza(data):
