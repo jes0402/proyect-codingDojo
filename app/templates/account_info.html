@@ -69,8 +69,8 @@
         <div class="container-info">
             <div class="info-order">
                 {% for list_order in all_orders %}
-                    <ul>
-                    <li>{{list_order.get("created_at")}}, Size: {{list_order.get("size")}} ,Price: {{list_order.get("precio")}}</li>
+                    <ul class="list-group">
+                        <li class="list-group-item">{{list_order.get("created_at")}}, Size: {{list_order.get("size")}} ,Price: {{list_order.get("precio")}}</li>
                     </ul>
                 {% endfor %}
             </div>
