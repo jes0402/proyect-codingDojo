@@ -3,10 +3,10 @@
 {% include 'components/AdminNavbar.html'%}
 
 <div id="progress-bar"></div>
+<div class="link">
+    <a href="/update/prices">Update Cost</a>
+</div>
 <main class="container_orders">
-    <div class="link">
-        <a href="/update/prices">Update Cost</a>
-    </div>
     <div class="table_container">
         <table class="table table-striped">
                 <tr>
@@ -16,7 +16,7 @@
                 <th scope="col">Precio de Venta</th>
                 <th scope="col">Ganancia</th>
                 <th scope="col">Estado</th>
-                <th scope="col">Marcar compo completado</th>
+                <th scope="col">Marcar como completado</th>
                 <th scope="col">Cancel</th>
             </tr>
             {% for list_order in all_orders %}
@@ -32,7 +32,7 @@
             </tr>
             {% endfor %}
         </table>
-</div>
+    </div>
 </main>
 
 {% endblock %}

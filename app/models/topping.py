@@ -37,6 +37,18 @@ class Topping:
         return results
 
     @classmethod
+    def get_toppings_by_i2(cls, toppings):
+        toppings_id = ",".join(toppings)
+        query = "select * from toppings where id in ({})".format(toppings_id)
+        # data es un diccionario que se pasará al método de guardar desde server.py
+        results = connectToMySQL('pizzabd').query_db( query, {} )
+        print(results)
+        toppings = []
+        for topping in results:
+            toppings.append(topping)
+        return toppings
+
+    @classmethod
     def get_url_by_id(cls, data ):
         query = "SELECT url FROM toppings WHERE id = %(id)s"
         results = connectToMySQL('pizzabd').query_db(query, data)

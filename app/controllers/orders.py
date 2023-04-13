@@ -49,10 +49,10 @@ def create_pizza():
             "toppings_id": topping
         }
         PizzaToppings.save(data_pizza_toppings)
-    toppings = Topping.get_toppings_by_id(toppings_list)
+    toppings = Topping.get_toppings_by_i2(toppings_list)
+    print(toppings)
     orders = Order.get_order_info(dataOrderID)
     toppingsPrice = len(toppings) * 1.5
-    print(orders[0])
     totalPrice = orders[0]['precio'] + toppingsPrice
     return render_template('order.html', all_orders = orders, toppings = toppings, key=stripe_keys['publishable_key'], toppingsPrice = toppingsPrice, totalPrice = totalPrice)
 

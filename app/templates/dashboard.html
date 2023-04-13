@@ -4,19 +4,20 @@
 
 <main class="container_dashboard">
 <h1>Hola!</h1>
-    <div class="table_container">
-        <table clas>
+
+    <div class="table_container-dashboard">
+        <table class="table table-striped">
             <tr>
-                <th>Q de órdenes</th>
-                <th>Q de órdenes completadas</th>
-                <th>Q de órdenes pendientes</th>
-                <th>Q de órdenes canceladas</th>
-                <th>Ventas Totales</th>
-                <th>Costos Totales</th>
-                <th>Ganancias Totales</th>
+                <th scope="col">Q de órdenes</th>
+                <th scope="col">Q de órdenes completadas</th>
+                <th scope="col">Q de órdenes pendientes</th>
+                <th scope="col">Q de órdenes canceladas</th>
+                <th scope="col">Ventas Totales</th>
+                <th scope="col">Costos Totales</th>
+                <th scope="col">Ganancias Totales</th>
             </tr>
             <tr>
-                <td>{{all_orders.get("cantidad")}}</td>
+                <td scope="row">{{all_orders.get("cantidad")}}</td>
                 <td>{{all_orders.get("completadas")}}</td>
                 <td>{{all_orders.get("pendientes")}}</td>
                 <td>{{all_orders.get("canceladas")}}</td>
@@ -26,7 +27,6 @@
 
             </tr>
         </table>
-</div>
+    </div>
 </main>
-
 {% endblock %}
