@@ -1,1 +1,4 @@
 # proyect-codingDojo
+
+Llaves de Stripe
+PUBLISHABLE_KEY=pk_test_Dt4ZBItXSZT1EzmOd8yCxonL SECRET_KEY=sk_test_CGGvfNiIPwLXiDwaOfZ3oX6Y python server.py
