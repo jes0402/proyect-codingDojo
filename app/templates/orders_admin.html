@@ -3,36 +3,63 @@
 {% include 'components/AdminNavbar.html'%}
 
 <div id="progress-bar"></div>
-<div class="link">
-    <a href="/update/prices">Update Cost</a>
+<div class="titulo_container">    
+   <h1>Órdenes</h1>
+   <h3>Aquí encontrarás el registro histórico de tus órdenes</h3>
 </div>
 <main class="container_orders">
     <div class="table_container">
+        <div class="link">    
+            <a href="/update/prices">Update Cost</a>
+        </div>
         <table class="table table-striped">
-                <tr>
-                <th scope="col">Order Id</th>
-                <th scope="col">Date</th>
-                <th scope="col">Costo total</th>
-                <th scope="col">Precio de Venta</th>
-                <th scope="col">Ganancia</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Marcar como completado</th>
-                <th scope="col">Cancel</th>
-            </tr>
+            <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">Order Id</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Costo total</th>
+                    <th scope="col">Precio de Venta</th>
+                    <th scope="col">Ganancia</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Marcar como completado</th>
+                    <th scope="col">Cancel</th>
+                </tr>
+            </thead>
             {% for list_order in all_orders %}
             <tr>
-                <td scope="row">{{list_order.get("order_id")}}</td>
+                <td scope="row"><a href="/order/{{list_order.get("order_id")}}">{{list_order.get("order_id")}}</a></td>
                 <td>{{list_order.get("created_at")}}</td>
                 <td>{{list_order.get("costoTotal") or 0}}</td>
                 <td>{{list_order.get("precio")}}</td>
                 <td>{{ list_order.get("ganacia") }}</td>
-                <td>{{list_order.get("estado") or list_order.get("precio")}}</td>
-                <td><a href="/complete/{{list_order.get("order_id")}}">Completar Orden</a></td>
-                <td><a href="/cancel/{{list_order.get("order_id")}}">Cancel</a></td>
+                <td class="estado">{{list_order.get("estado") or list_order.get("precio")}}</td>
+                <td class="completar"><a class="link_complete" href="/complete/{{list_order.get("order_id")}}">Completar Orden</a></td>
+                <td class="cancelar"><a class="link_cancel" href="/cancel/{{list_order.get("order_id")}}">Cancel</a></td>
             </tr>
             {% endfor %}
         </table>
     </div>
 </main>
+
+<script>
+    const estados = document.querySelectorAll(".estado");
+    const completar = document.querySelectorAll(".completar");
+    const cancelar = document.querySelectorAll(".cancelar");
+    
+    for (let i = 0; i < estados.length; i++) {
+        const estado = estados[i];
+        if (estado.innerHTML === "completo") {
+            estado.style.backgroundColor = "green";
+            completar[i].style.display = "none";
+            cancelar[i].style.display = "none";
+        } else if(estado.innerHTML === "pendiente") {
+            estado.style.backgroundColor = "yellow";
+        } else if(estado.innerHTML === "cancelado") {
+            estado.style.backgroundColor = "red";
+            completar[i].style.display = "none";
+            cancelar[i].style.display = "none";
+        }
+    }
+</script>
 
 {% endblock %}

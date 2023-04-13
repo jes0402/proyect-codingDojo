@@ -3,19 +3,23 @@
 {% include 'components/AdminNavbar.html'%}
 
 <main class="container_dashboard">
-<h1>Hola!</h1>
-
+    <div class="titulo_container">
+        <h1>¡Hola!</h1>
+        <h3>Este es la información resumida de tus órdenes históricas</h3>
+    </div>
     <div class="table_container-dashboard">
         <table class="table table-striped">
-            <tr>
-                <th scope="col">Q de órdenes</th>
-                <th scope="col">Q de órdenes completadas</th>
-                <th scope="col">Q de órdenes pendientes</th>
-                <th scope="col">Q de órdenes canceladas</th>
-                <th scope="col">Ventas Totales</th>
-                <th scope="col">Costos Totales</th>
-                <th scope="col">Ganancias Totales</th>
-            </tr>
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Q de órdenes</th>
+                    <th scope="col">Q de órdenes completadas</th>
+                    <th scope="col">Q de órdenes pendientes</th>
+                    <th scope="col">Q de órdenes canceladas</th>
+                    <th scope="col">Ventas Totales</th>
+                    <th scope="col">Costos Totales</th>
+                    <th scope="col">Ganancias Totales</th>
+                </tr>
+        </thead>
             <tr>
                 <td scope="row">{{all_orders.get("cantidad")}}</td>
                 <td>{{all_orders.get("completadas")}}</td>

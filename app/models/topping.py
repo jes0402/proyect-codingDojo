@@ -18,7 +18,7 @@ class Topping:
     
     @classmethod
     def save(cls, data ):
-        query = "INSERT INTO toppings ( toppings , url, medida, price, created_at, updated_at ) VALUES (%(toppings)s, %(url)s, %(medida)s, %(price)s, NOW(),NOW())"
+        query = "INSERT INTO toppings ( toppings , url, medida, price, created_at, updated_at ) VALUES (%(toppings)s, %(url)s, %(medida)s, 0, NOW(),NOW())"
         # data es un diccionario que se pasará al método de guardar desde server.py
         result = connectToMySQL('pizzabd').query_db( query, data )
         return result
@@ -33,7 +33,6 @@ class Topping:
     def get_toppings_by_id(cls, data):
         query = "SELECT * FROM toppings WHERE id = %(id)s"
         results = connectToMySQL('pizzabd').query_db(query, data)
-        print("resulllllts", results)
         return results
 
     @classmethod

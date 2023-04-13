@@ -1,0 +1,32 @@
+
+{% extends 'components/Layout.html' %}
+{% block content %}    
+{% include 'components/Navbar.html' %}
+<main>
+    <div class="container-order">
+        <div class="container-form">
+            <form action="/charge" method='post'>
+                <input type="hidden" value={{session.user_id}} name="userSession">
+                <div class="container-info-order-">
+                    <h2 class="navbar-text">Your Order</h2>
+                    {% for one_order in all_orders %}
+                        <input type="text" name="order_id" value="{{one_order.get("id")}}" hidden></input>
+                        <p>Method: {{one_order.get("method")}}</p>
+                        <p>QTY: {{one_order.get("QTY")}}</p>
+                        <p>Size: {{one_order.get("size")}}</p>
+                        <p>Crust: {{one_order.get("crust")}}</p>
+                        <p>
+                            Toppings: 
+                            <ul>
+                                {% for topping in toppings %}
+                                    <li>{{topping.toppings}}</li>
+                                {% endfor %}
+                            </ul>
+                        </p>
+                    {% endfor %}
+            <form>
+        </div>
+
+    </main>
+    
+{% endblock %}

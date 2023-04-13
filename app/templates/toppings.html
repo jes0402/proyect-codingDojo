@@ -13,20 +13,22 @@
 {% endif %}
 {% endwith %}
 <main class="container_toppings">
-    <div class="link">
-        <a href="/update/prices">Update Cost</a>
-    </div>
     <div class="container_toppings_table">
+        <div class="link">
+            <a href="/update/prices">Update Cost</a>
+        </div>
         <table class="table table-striped">
-            <tr class:"table-superior">
-                <th scope="col">Topping Id</th>
-                <th scope="col">Topping</th>
-                <th scope="col">Url</th>
-                <th scope="col">Cost by Kg.</th>
-                <th scope="col">Meassure</th>
-                <th scope="col">Cost by unit in usd</th>
-                <th scope="col">Action</th>
-            </tr>
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Topping Id</th>
+                    <th scope="col">Topping</th>
+                    <th scope="col">Url</th>
+                    <th scope="col">Cost by Kg.</th>
+                    <th scope="col">Meassure</th>
+                    <th scope="col">Cost by unit in usd</th>
+                    <th scope="col">Action</th>
+                </tr>
+        </thead>
             {% for list_topping in dataToppings %}
             <tr>
                 <td scope="row">{{list_topping.get("id")}}</td>
